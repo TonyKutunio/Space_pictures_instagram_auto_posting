@@ -39,7 +39,7 @@ So the main difference between `fetch_hubble.py` and `fetch_spacex.py` is their 
 [And here is Github SpaceX API repository](https://github.com/r-spacex/SpaceX-API)
  
  
- ### 3.`instagram_image_posting_if.py`  
+ ### 3.`instagram_image_posting.py`  
  This function takes `folder_path` as an argument. So in this case it going to take pictures from the project folder
   `Instagram_auto_posting/Space Pictures/` and going to post them to your instagram one by one.  
   
