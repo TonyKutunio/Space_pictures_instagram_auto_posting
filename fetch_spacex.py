@@ -2,7 +2,7 @@ import requests
 import os
 from PIL import Image
 import utils
-from functools import partial
+from pathlib import Path
 
 
 def fetch_spacex_launch_urls(launch_number):
@@ -15,11 +15,10 @@ def fetch_spacex_launch_urls(launch_number):
 
 if __name__ == "__main__":
     launch_number = 'latest'
-    folder_path = 'Instagram_auto_posting/Space Pictures/'
+    folder_path = (Path.cwd() / 'Space Pictures')
     spacex_pictures_urls = fetch_spacex_launch_urls(launch_number)
     mission = 'spacex'
     image_id = 0
-    download_pictures_partial = partial(utils.download_pictures, folder_path, spacex_pictures_urls, image_id, mission)
 
-    download_pictures_partial()
+    utils.download_pictures(folder_path, spacex_pictures_urls, image_id, mission)
     utils.thumbnail_pictures(folder_path)
