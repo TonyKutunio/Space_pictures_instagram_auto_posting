@@ -2,10 +2,10 @@ import requests
 import os
 from PIL import Image
 import utils
-from functools import partial
+from pathlib import Path
 
 
-def fetch_hubble_launch(image_id):
+def fetch_hubble_launch_url(image_id):
     hubble_url = 'http://hubblesite.org/api/v3/image/{}'.format(image_id)
     response = requests.get(hubble_url)
     response.raise_for_status()
@@ -16,10 +16,11 @@ def fetch_hubble_launch(image_id):
 
 if __name__ == "__main__":
     image_id = 1
-    folder_path = 'Instagram_auto_posting/Space Pictures/'
+    folder_path = (Path.cwd() / 'Space Pictures')
     mission = 'hubble'
-    hubble_picture_url = fetch_hubble_launch(image_id)
-    download_pictures_partial = partial(utils.download_pictures, folder_path, hubble_picture_url, image_id, mission)
+    picture_url = fetch_hubble_launch_url(image_id)
+    picture_request_response = utils.get_pictures(picture_url, mission)
 
-    download_pictures_partial()
+    utils.download_pictures(picture_request_response, folder_path, picture_url, mission, image_id)
     utils.thumbnail_pictures(folder_path)
+
