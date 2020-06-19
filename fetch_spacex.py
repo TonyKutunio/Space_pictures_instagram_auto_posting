@@ -4,7 +4,7 @@ from PIL import Image
 import utils
 from pathlib import Path
 
-
+    
 def fetch_spacex_launch_urls(launch_number):
     spacex_url = 'https://api.spacexdata.com/v3/launches/{}'.format(launch_number)
     response = requests.get(spacex_url)
@@ -16,9 +16,11 @@ def fetch_spacex_launch_urls(launch_number):
 if __name__ == "__main__":
     launch_number = 'latest'
     folder_path = (Path.cwd() / 'Space Pictures')
-    spacex_pictures_urls = fetch_spacex_launch_urls(launch_number)
     mission = 'spacex'
     image_id = 0
+    pictures_urls = fetch_spacex_launch_urls(launch_number)
+    picture_request_response = utils.get_pictures(pictures_urls, mission)
 
-    utils.download_pictures(folder_path, spacex_pictures_urls, image_id, mission)
+
+    utils.download_pictures(picture_request_response, folder_path, pictures_urls, mission, image_id)
     utils.thumbnail_pictures(folder_path)
