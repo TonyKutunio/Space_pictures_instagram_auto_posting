@@ -18,7 +18,7 @@ if __name__ == "__main__":
     image_id = 1
     folder_path = (Path.cwd() / 'Space Pictures')
     mission = 'hubble'
-    picture_url = fetch_hubble_launch_url(image_id)
+    picture_url = fetch_hubble_launch_url(image_id)   #TODO find better name
     picture_request_response = utils.get_pictures(picture_url, mission)
 
     utils.download_pictures(picture_request_response, folder_path, picture_url, mission, image_id)
