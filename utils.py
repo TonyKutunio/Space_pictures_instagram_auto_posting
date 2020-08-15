@@ -18,7 +18,7 @@ def download_pictures(response, folder_path, url, mission, image_id):
     for picture_number, picture_url in enumerate(url):
         if mission == 'hubble':
             file_extension = os.path.splitext(url)[-1]
-            filename = mission + ' {}{}'.format(image_id, file_extension)
+            filename = mission + ' {}{}'.format(image_id, file_extension)   #TODO  there are some ways to make a code more optimized 
         elif mission == 'spacex':
             filename = mission + ' {}.jpg'.format(picture_number + 1)
         file_path = os.path.join(folder_path, filename)
