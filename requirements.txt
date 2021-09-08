@@ -1,4 +1,4 @@
 requests==2.22.0
 instabot==0.117.0
-Pillow==7.1.1
+Pillow==8.3.2
 python-dotenv==0.9.1
